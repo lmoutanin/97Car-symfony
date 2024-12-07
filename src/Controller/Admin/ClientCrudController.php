@@ -33,13 +33,13 @@ class ClientCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('nom'),
-            TextField::new('prenom'),
-            TextField::new('telephone'),
-            EmailField::new('mel'),
-            TextField::new('adresse'),
-            IntegerField::new('code_postal'),
-            TextField::new('ville')
+            TextField::new('nom')->setRequired(true),
+            TextField::new('prenom')->setRequired(true),
+            TextField::new('telephone')->setRequired(true),
+            EmailField::new('mel')->setRequired(true),
+            TextField::new('adresse')->setRequired(true),
+            IntegerField::new('code_postal')->setRequired(true),
+            TextField::new('ville')->setRequired(true)
         ];
     }
 }

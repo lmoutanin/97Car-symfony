@@ -30,15 +30,17 @@ class Voiture
     #[ORM\Column]
     private ?int $kilometrage = null;
 
-    #[ORM\ManyToOne(inversedBy: 'voitures')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Client $client = null;
+
 
     /**
      * @var Collection<int, Facture>
      */
     #[ORM\OneToMany(targetEntity: Facture::class, mappedBy: 'voiture')]
     private Collection $factures;
+
+    #[ORM\ManyToOne(inversedBy: 'voitures')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Client $client = null;
 
     public function __construct()
     {
@@ -110,17 +112,6 @@ class Voiture
         return $this;
     }
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
-
-    public function setClient(?Client $client): static
-    {
-        $this->client = $client;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Facture>
@@ -155,6 +146,18 @@ class Voiture
 
     public function __toString()
     {
-        return $this->marque .' '. $this->modele;
+        return $this->marque . ' ' . $this->modele;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
+
+        return $this;
     }
 }

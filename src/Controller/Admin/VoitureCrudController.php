@@ -38,6 +38,7 @@ class VoitureCrudController extends AbstractCrudController
             TextField::new('immatriculation'),
             IntegerField::new('kilometrage'),
             AssociationField::new('client')
+            ->setFormTypeOption('placeholder', 'Choisissez un Client')
         ];
     }
 }

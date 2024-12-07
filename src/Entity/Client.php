@@ -36,11 +36,7 @@ class Client
     #[ORM\Column(length: 255)]
     private ?string $ville = null;
 
-    /**
-     * @var Collection<int, Voiture>
-     */
-    #[ORM\OneToMany(targetEntity: Voiture::class, mappedBy: 'client')]
-    private Collection $voitures;
+
 
     /**
      * @var Collection<int, Facture>
@@ -48,10 +44,17 @@ class Client
     #[ORM\OneToMany(targetEntity: Facture::class, mappedBy: 'client')]
     private Collection $factures;
 
+    /**
+     * @var Collection<int, Voiture>
+     */
+    #[ORM\OneToMany(targetEntity: Voiture::class, mappedBy: 'client')]
+    private Collection $voitures;
+
     public function __construct()
     {
-        $this->voitures = new ArrayCollection();
+
         $this->factures = new ArrayCollection();
+        $this->voitures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,35 +146,7 @@ class Client
         return $this;
     }
 
-    /**
-     * @return Collection<int, Voiture>
-     */
-    public function getVoitures(): Collection
-    {
-        return $this->voitures;
-    }
 
-    public function addVoiture(Voiture $voiture): static
-    {
-        if (!$this->voitures->contains($voiture)) {
-            $this->voitures->add($voiture);
-            $voiture->setClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVoiture(Voiture $voiture): static
-    {
-        if ($this->voitures->removeElement($voiture)) {
-            // set the owning side to null (unless already changed)
-            if ($voiture->getClient() === $this) {
-                $voiture->setClient(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Facture>
@@ -207,5 +182,35 @@ class Client
     public function __toString()
     {
         return $this->nom . ' ' . $this->prenom;
+    }
+
+    /**
+     * @return Collection<int, Voiture>
+     */
+    public function getVoitures(): Collection
+    {
+        return $this->voitures;
+    }
+
+    public function addVoiture(Voiture $voiture): static
+    {
+        if (!$this->voitures->contains($voiture)) {
+            $this->voitures->add($voiture);
+            $voiture->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVoiture(Voiture $voiture): static
+    {
+        if ($this->voitures->removeElement($voiture)) {
+            // set the owning side to null (unless already changed)
+            if ($voiture->getClient() === $this) {
+                $voiture->setClient(null);
+            }
+        }
+
+        return $this;
     }
 }
