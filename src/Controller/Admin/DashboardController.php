@@ -40,6 +40,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Client', 'fa-solid fa-user', Client::class);
         yield MenuItem::linkToCrud('Voiture', 'fa-solid fa-car', Voiture::class);
         yield MenuItem::linkToCrud('Facture', 'fa-solid fa-file-lines', Facture::class);
-        yield MenuItem::linkToCrud('TypeReparation', 'fa-solid fa-screwdriver-wrench', TypeReparation::class);
+        yield MenuItem::linkToCrud('Réparation', 'fa-solid fa-screwdriver-wrench', TypeReparation::class);
     }
 }

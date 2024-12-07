@@ -15,8 +15,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-
-
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 
 class FactureCrudController extends AbstractCrudController
 {
@@ -47,25 +47,9 @@ class FactureCrudController extends AbstractCrudController
                 ->setFormTypeOption('placeholder', 'Choisissez un Client'),
             AssociationField::new('voiture')
                 ->setFormTypeOption('placeholder', 'Choisissez une Voiture'),
+            AssociationField::new('typeReparation','Réparation')
 
-            // Ajout du champ CollectionField pour afficher les détails des réparations
-            CollectionField::new('typeReparation', 'Réparations')
-                ->onlyOnDetail()
-                ->setEntryType(TypeReparation::class)
-                ->formatValue(function ($value, $entity) {
-                    $reparations = $entity->getTypeReparation();
-                    $details = '<ul>';
-                    foreach ($reparations as $reparation) {
-                        $details .= sprintf(
-                            '<li>Description: %s, Coût: %d€, Quantité: %d</li>',
-                            $reparation->getDescription(),
-                            $reparation->getCout(),
-                            $reparation->getQuantite()
-                        );
-                    }
-                    $details .= '</ul>';
-                    return $details;
-                }),
+
         ];
     }
 }
