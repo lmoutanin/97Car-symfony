@@ -19,8 +19,8 @@ services:
       - caddy_data:/data
       - caddy_config:/config
     ports:
-      - "8085:80" # HTTP
-      - "8443:443" # HTTPS
+      - "80:80" # Mappe le port 80 de l'hôte au port 80 du conteneur
+      - "443:443" # Mappe le port 443 de l'hôte au port 443 du conteneur (si HTTPS est utilisé)
 
   # Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
   ###> symfony/mercure-bundle ###
