@@ -17,13 +17,17 @@
 				<a href="{{ path('app_logout') }}">Logout</a>
 			</div>
 		{% endif %}
-
-		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-		<label for="username">Username</label>
-		<input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="username" required autofocus>
-		<label for="password">Password</label>
+ 		 
+			<center> <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/L59mwZ6D/logo-97car.png' border='0' width="300"  alt='logo-97car'/></a> </center></br>
+		<h1 class="h3 mb-3 font-weight-normal"></h1>
+		<center>
+		<label for="username"><strong>Utilisateur</strong</label></br></br>
+		
+		<input type="text" value="{{ last_username }}" name="_username" id="username" class="form-control"   autocomplete="username" required autofocus></br></br> 
+		<label for="username"><strong>Mot de passer</strong</label></br></br>
+		 
 		<input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-
+		</center>
 		<input
 		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -36,9 +40,12 @@
 	 <label for="_remember_me">Remember me</label>
 	 </div>
 	 #}
-	</br>
+	</br></br>
+	<center>
 	<button class="btn btn-lg btn-primary login-button" type="submit">
-		Sign in
+		Connexion
 	</button>
+
+	</center>
 
 </div></form>{% endblock %}
