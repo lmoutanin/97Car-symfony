@@ -33,7 +33,7 @@ class Facture
     /**
      * @var Collection<int, FactureTypeReparation>
      */
-    #[ORM\OneToMany(targetEntity: FactureTypeReparation::class, mappedBy: 'facture', orphanRemoval: true)]
+ #[ORM\OneToMany(targetEntity: FactureTypeReparation::class, mappedBy: 'facture', orphanRemoval: true, cascade: ['persist', 'remove'])]
     private Collection $factureTypeReparations;
 
     public function __construct()

@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use App\Entity\Facture;
 use App\Entity\TypeReparation;
+use App\Form\FactureTypeReparationType;  
+
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -47,8 +49,17 @@ class FactureCrudController extends AbstractCrudController
                 ->setFormTypeOption('placeholder', 'Choisissez un Client'),
             AssociationField::new('voiture')
                 ->setFormTypeOption('placeholder', 'Choisissez une Voiture'),
+            
+            CollectionField::new('factureTypeReparations', 'Réparations')
+                ->setEntryType(FactureTypeReparationType::class)
+                ->allowAdd()
+                ->allowDelete()
+                ->setFormTypeOption('by_reference', false),
                
+            IntegerField::new('montant')
                 
+
+            
 
         ];
     }
