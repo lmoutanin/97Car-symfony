@@ -21,19 +21,20 @@ class TypeReparation
     #[ORM\Column]
     private ?int $cout = null;
 
-    #[ORM\Column]
-    private ?int $quantite = null;
-
     /**
-     * @var Collection<int, Facture>
+     * @var Collection<int, FactureTypeReparation>
      */
-    #[ORM\ManyToMany(targetEntity: Facture::class, mappedBy: 'typeReparation')]
-    private Collection $factures;
+    #[ORM\OneToMany(targetEntity: FactureTypeReparation::class, mappedBy: 'reparation')]
+    private Collection $factureTypeReparations;
 
     public function __construct()
     {
-        $this->factures = new ArrayCollection();
+        $this->factureTypeReparations = new ArrayCollection();
     }
+
+  
+
+   
 
     public function getId(): ?int
     {
@@ -64,47 +65,44 @@ class TypeReparation
         return $this;
     }
 
-    public function getQuantite(): ?int
-    {
-        return $this->quantite;
-    }
+   
 
-    public function setQuantite(int $quantite): static
-    {
-        $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Facture>
-     */
-    public function getFactures(): Collection
-    {
-        return $this->factures;
-    }
-
-    public function addFacture(Facture $facture): static
-    {
-        if (!$this->factures->contains($facture)) {
-            $this->factures->add($facture);
-            $facture->addTypeReparation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFacture(Facture $facture): static
-    {
-        if ($this->factures->removeElement($facture)) {
-            $facture->removeTypeReparation($this);
-        }
-
-        return $this;
-    }
+     
 
     public function __toString()
     {
         return $this->description;
     }
+
+    /**
+     * @return Collection<int, FactureTypeReparation>
+     */
+    public function getFactureTypeReparations(): Collection
+    {
+        return $this->factureTypeReparations;
+    }
+
+    public function addFactureTypeReparation(FactureTypeReparation $factureTypeReparation): static
+    {
+        if (!$this->factureTypeReparations->contains($factureTypeReparation)) {
+            $this->factureTypeReparations->add($factureTypeReparation);
+            $factureTypeReparation->setReparation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFactureTypeReparation(FactureTypeReparation $factureTypeReparation): static
+    {
+        if ($this->factureTypeReparations->removeElement($factureTypeReparation)) {
+            // set the owning side to null (unless already changed)
+            if ($factureTypeReparation->getReparation() === $this) {
+                $factureTypeReparation->setReparation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
 }

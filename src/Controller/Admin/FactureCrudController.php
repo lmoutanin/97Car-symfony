@@ -47,8 +47,8 @@ class FactureCrudController extends AbstractCrudController
                 ->setFormTypeOption('placeholder', 'Choisissez un Client'),
             AssociationField::new('voiture')
                 ->setFormTypeOption('placeholder', 'Choisissez une Voiture'),
-            AssociationField::new('typeReparation','Réparation')
-
+               
+                
 
         ];
     }

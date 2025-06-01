@@ -32,7 +32,7 @@ class TypeReparationCrudController extends AbstractCrudController
         return [
             TextField::new('description'),
             IntegerField::new('cout'),
-            IntegerField::new('quantite')
+           
         ];
     }
 }
