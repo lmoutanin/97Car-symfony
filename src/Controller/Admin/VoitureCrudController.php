@@ -32,13 +32,14 @@ class VoitureCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IntegerField::new('annee'),
+            AssociationField::new('client')->setFormTypeOption('placeholder', 'Choisissez un Client'),
             TextField::new('marque'),
             TextField::new('modele'),
+             IntegerField::new('annee'),
             TextField::new('immatriculation'),
             IntegerField::new('kilometrage'),
-            AssociationField::new('client')
-            ->setFormTypeOption('placeholder', 'Choisissez un Client')
+      
+             
         ];
     }
 }

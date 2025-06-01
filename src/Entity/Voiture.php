@@ -71,7 +71,7 @@ class Voiture
 
     public function setMarque(string $marque): static
     {
-        $this->marque = $marque;
+        $this->marque =  strtoupper($marque);
 
         return $this;
     }
@@ -83,7 +83,7 @@ class Voiture
 
     public function setModele(string $modele): static
     {
-        $this->modele = $modele;
+        $this->modele =  strtoupper($modele);
 
         return $this;
     }
@@ -95,7 +95,7 @@ class Voiture
 
     public function setImmatriculation(string $immatriculation): static
     {
-        $this->immatriculation = $immatriculation;
+        $this->immatriculation =  strtoupper($immatriculation);
 
         return $this;
     }
@@ -146,7 +146,7 @@ class Voiture
 
     public function __toString()
     {
-        return $this->marque . ' ' . $this->modele;
+        return $this->getClient() .' '.$this->marque . ' ' . $this->modele;
     }
 
     public function getClient(): ?Client

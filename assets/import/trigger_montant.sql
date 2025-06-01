@@ -31,3 +31,9 @@ CREATE TRIGGER facture_montant_trigger
 AFTER INSERT OR UPDATE OR DELETE ON facture_type_reparation
 FOR EACH ROW
 EXECUTE FUNCTION update_facture_montant();
+
+
+-- Commande sql pour avoir le compte admin
+
+INSERT INTO "admin" ("username", "roles", "password")
+VALUES ('admin', '["ROLE_ADMIN"]', '$2y$13$P3XDuwviMxXgcobFF7MbBOd51PGHrNvkxVS29Q2.P8sZhBVVivdse')

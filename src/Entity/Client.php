@@ -69,7 +69,7 @@ class Client
 
     public function setNom(string $nom): static
     {
-        $this->nom = $nom;
+        $this->nom = strtoupper($nom);
 
         return $this;
     }
@@ -141,7 +141,7 @@ class Client
 
     public function setVille(string $ville): static
     {
-        $this->ville = $ville;
+        $this->ville =  strtoupper($ville);
 
         return $this;
     }
@@ -181,7 +181,7 @@ class Client
 
     public function __toString()
     {
-        return $this->nom . ' ' . $this->prenom;
+        return  $this->prenom." ".strtoupper($this->nom);
     }
 
     /**
